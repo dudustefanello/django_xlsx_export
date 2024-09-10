@@ -6,9 +6,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-xlsx-export"
-version = "0.2"
+version = "0.3"
 description = "Export django models to XLSX with xlsxwriter"
 dependencies = [
+    "django>=5",
     "xlsxwriter>=3.2.0",
 ]
 readme = "README.md"
