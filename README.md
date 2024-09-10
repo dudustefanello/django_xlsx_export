@@ -1,2 +1,3 @@
-# pip_app
-Template para Python Package
+# django_xlsx_export
+
+Export django models to XLSX with xlsxwriter

@@ -7,8 +7,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pip-app"
 version = "0.1"
-description = "Template para Python Package"
-dependencies = []
+description = "Export django models to XLSX with xlsxwriter"
+dependencies = [
+    "xlsxwriter>=3.2.0",
+]
 readme = "README.md"
 requires-python = ">= 3.10"
 authors = [
@@ -30,4 +32,4 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/dudustefanello/pip_app/"
+Homepage = "https://github.com/dudustefanello/django_xlsx_export/"
