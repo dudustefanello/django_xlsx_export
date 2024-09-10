@@ -35,10 +35,13 @@ class ModelExportView(View):
 class XlsxExportView:
     fields = []
     worksheet_name = ''
+    freeze_panes = True
+    autofit = True
+    header_format = {'bold': True}
 
     def get_worksheet(self, workbook, queryset):
-        worksheet = workbook.add_worksheet(self.worksheet_name)
-        bold = workbook.add_format({'bold': True})
+        worksheet = workbook.add_worksheet(str(self.worksheet_name))
+        bold = workbook.add_format(self.header_format)
 
         for i, field in enumerate(self.fields):
             if type(field) is tuple:
@@ -83,6 +86,13 @@ class XlsxExportView:
                 finally:
                     col += 1
             row += 1
+
+        if self.freeze_panes:
+            worksheet.freeze_panes(1, 0)
+
+        if self.autofit:
+            worksheet.autofit()
+
         return worksheet
 
     def get_workbook(self, output, queryset):
@@ -102,4 +112,7 @@ class XlsxExportView:
 
 
 class ModelXlsxView(ModelExportView, XlsxExportView):
-    pass
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset(request)
+        return self.get_xlsx_response(queryset)
