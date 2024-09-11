@@ -101,18 +101,20 @@ class XlsxExportView:
         workbook.close()
         return workbook
 
-    def get_xlsx_response(self, queryset):
+    def get_xlsx_response(self, request, queryset):
         output = BytesIO()
         self.get_workbook(output, queryset)
         response = HttpResponse(content_type='application/vnd.ms-excel')
-        response['Content-Disposition'] = 'attachment;filename="movimento{}.xlsx"'.format(
-            date(datetime.datetime.today(), 'Ym'))
+        response['Content-Disposition'] = 'attachment;filename="{}.xlsx"'.format(self.get_filename(request))
         response.write(output.getvalue())
         return response
+
+    def get_filename(self, request):
+        return request.resolver_match.view_name
 
 
 class ModelXlsxView(ModelExportView, XlsxExportView):
 
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset(request)
-        return self.get_xlsx_response(queryset)
+        return self.get_xlsx_response(request, queryset)
