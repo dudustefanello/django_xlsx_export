@@ -33,3 +33,4 @@ jobs:
         repository-url: https://pip.stefanello.cc/
         user: dudustefanello
         password: ${{ secrets.PYPI_API_TOKEN_PRIVATE }}
+        skip-existing: true
