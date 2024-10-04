@@ -10,6 +10,9 @@ from django.template.defaultfilters import date
 from xlsxwriter import Workbook
 
 
+CONTABIL = '_-R$ * #,##0.00_-;-R$ * #,##0.00_-;_-R$ * "-"??_-;_-@_-'
+
+
 class ModelExportView(View):
     model = None
     list_filter = []
