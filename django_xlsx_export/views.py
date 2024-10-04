@@ -23,8 +23,9 @@ class ModelExportView(View):
                 except ValidationError:
                     try:
                         value = request.GET[get]
-                        data = d(int(value[0:4]), int(value[4:6]), 1)
-                        queryset = queryset.filter(**{get + '__month': data.month, get + '__year': data.year})
+                        if value != 'all':
+                            data = d(int(value[0:4]), int(value[4:6]), 1)
+                            queryset = queryset.filter(**{get + '__month': data.month, get + '__year': data.year})
                     except FieldError:
                         pass
                 except FieldError:
