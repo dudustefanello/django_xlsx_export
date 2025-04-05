@@ -1,0 +1,21 @@
+version: 2
+
+registries:
+  pip-stefanello:
+    type: python-index
+    url: https://pypi.stefanello.cc/simple/
+    username: dudustefanello
+    password: ${{ secrets.PYPI_PASS }}
+
+updates:
+  - package-ecosystem: pip
+    directory: /
+    insecure-external-code-execution: allow
+    registries: "*"
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
