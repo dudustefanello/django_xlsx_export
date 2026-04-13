@@ -10,7 +10,7 @@ version = "1.0.1"
 description = "Export django models to XLSX with xlsxwriter"
 dependencies = [
     "django>=5.2.13",
-    "xlsxwriter>=3.2.0",
+    "xlsxwriter>=3.2.9",
 ]
 readme = "README.md"
 requires-python = ">= 3.10"
